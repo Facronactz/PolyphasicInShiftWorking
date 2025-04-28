@@ -1,0 +1,89 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shift Work Polyphasic Sleep Schedule SPA</title>
+
+  <link rel="stylesheet" href="css/style.css">
+  <meta name="description" content="Shift Work Polyphasic Sleep Schedule SPA">
+
+  <meta property="og:title" content="Shift Work Polyphasic Sleep Schedule SPA">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+  <meta property="og:image:alt" content="Shift Work Polyphasic Sleep Schedule SPA">
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.png">
+
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#fafafa">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Enable dark mode class strategy for Tailwind
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {},
+      },
+      variants: {},
+      plugins: [],
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .scroll-smooth {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen py-6 md:p-6 scroll-smooth flex flex-col items-center dark:bg-gray-900">
+<header class="max-w-6xl w-full mb-8 flex justify-between items-center">
+  <div>
+    <h1 class="text-4xl font-semibold text-gray-800 dark:text-gray-100 mb-2">Shift Work Polyphasic Sleep Schedule</h1>
+    <p class="text-gray-600 dark:text-gray-300 mb-6">Click a shift transition below to view the detailed polyphasic sleep schedule.</p>
+  </div>
+  <button id="dark-mode-toggle" aria-label="Toggle Dark Mode" class="bg-gray-200 dark:bg-gray-700 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+    <i class="fas fa-moon text-gray-800 dark:text-gray-200"></i>
+  </button>
+</header>
+
+<nav class="max-w-6xl w-full mb-10 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md flex flex-col md:flex-row md:items-center md:space-x-4">
+  <div class="flex-1 mb-4 md:mb-0">
+    <label for="shift-from" class="block mb-2 text-gray-900 dark:text-gray-100 font-semibold">From Shift</label>
+    <select id="shift-from" class="w-full p-2 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
+      <!-- Options will be populated by JS -->
+    </select>
+  </div>
+  <div class="flex-1">
+    <label for="shift-to" class="block mb-2 text-gray-900 dark:text-gray-100 font-semibold">To Shift</label>
+    <select id="shift-to" class="w-full p-2 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
+      <!-- Options will be populated by JS -->
+    </select>
+  </div>
+</nav>
+
+<main id="schedule-container" class="max-w-6xl w-full bg-white dark:bg-gray-900 rounded-lg shadow-lg min-h-[300px] text-gray-900 dark:text-gray-100 transition-opacity duration-500 ease-in-out opacity-100">
+  <!-- Schedule table will be rendered here -->
+</main>
+
+<footer class="max-w-6xl w-full mt-12 text-center text-gray-500 text-sm">
+  &copy; 2025 Facronactz. All rights reserved.
+</footer>
+
+<script type="module">
+  import { init } from './js/functions.js';
+  init();
+</script>
+</body>
+
+</html>
