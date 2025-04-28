@@ -1,23 +1,8 @@
 import { schedules } from '../data/schedule.js';
 
-const navList = document.getElementById('nav-list');
 const scheduleContainer = document.getElementById('schedule-container');
 
-export function createNavItem(key, title) {
-  const li = document.createElement('li');
-  const a = document.createElement('a');
-  a.href = '#';
-  a.textContent = title;
-  a.className = 'hover:underline cursor-pointer';
-  a.addEventListener('click', (e) => {
-    e.preventDefault();
-    renderSchedule(key);
-  });
-  li.appendChild(a);
-  return li;
-}
-
-export function renderSchedule(key) {
+function renderSchedule(key) {
   const schedule = schedules[key];
   if (!schedule) {
     scheduleContainer.innerHTML = '<p class="text-red-600">Schedule not found.</p>';
@@ -33,21 +18,21 @@ export function renderSchedule(key) {
     let html = `
       <div class="flex flex-col sm:flex-row sm:items-center sm:space-x-2 mb-4">
         <span class="text-lg sm:text-xl font-semibold text-gray-800 dark:text-gray-100">${fromShift}</span>
-        <span class="text-blue-500 dark:text-blue-400 text-xl sm:text-2xl font-bold mx-0 sm:mx-2">
+        <span class="text-blue-500 dark:text-blue-400 text-xl sm:text-2xl font-bold mx-0 sm:mx-2 flex">
           <span class="sm:hidden block">↓</span>
-          <span class="hidden sm:block">→</span>
+          <span class="invisible sm:visible">→</span>
         </span>
         <span class="text-lg sm:text-xl font-semibold text-gray-800 dark:text-gray-100">${toShift}</span>
       </div>
     `;
-    html += `<table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700 text-sm rounded-lg overflow-hidden shadow-sm">
+    html += `<table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700 text-xs md:text-sm rounded-lg overflow-hidden shadow-sm">
       <thead class="bg-gray-100 dark:bg-gray-700">
         <tr>
-          <th class="font-bold px-4 py-2 text-left text-gray-600 dark:text-gray-300 rounded-tl-lg">Time</th>
-          <th class="font-bold px-4 py-2 text-left text-gray-600 dark:text-gray-300">Activity</th>
-          <th class="font-bold px-4 py-2 text-left text-gray-600 dark:text-gray-300">Sleep Duration</th>
-          <th class="font-bold px-4 py-2 text-left text-gray-600 dark:text-gray-300">Awake Duration</th>
-          <th class="font-bold px-4 py-2 text-left text-gray-600 dark:text-gray-300 rounded-tr-lg">Notes</th>
+          <th class="font-bold px-2 md:px-4 py-2 text-left text-gray-600 dark:text-gray-300 rounded-tl-lg">Time</th>
+          <th class="font-bold px-2 md:px-4 py-2 text-left text-gray-600 dark:text-gray-300">Activity</th>
+          <th class="font-bold px-2 md:px-4 py-2 text-left text-gray-600 dark:text-gray-300">Sleep Duration</th>
+          <th class="font-bold px-2 md:px-4 py-2 text-left text-gray-600 dark:text-gray-300">Awake Duration</th>
+          <th class="font-bold px-2 md:px-4 py-2 text-left text-gray-600 dark:text-gray-300 rounded-tr-lg">Notes</th>
         </tr>
       </thead>
       <tbody>`;
@@ -63,18 +48,18 @@ export function renderSchedule(key) {
         rowClass += " bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-300";
       }
       html += `<tr class="${rowClass}">
-        <td class="px-4 py-2 font-mono">${row.time}</td>
-        <td class="px-4 py-2 font-semibold">${row.activity}</td>
-        <td class="px-4 py-2 font-mono">${row.sleepDuration}</td>
-        <td class="px-4 py-2 font-mono">${row.awakeDuration}</td>
-        <td class="px-4 py-2 italic">${row.notes}</td>
+        <td class="px-2 md:px-4 py-2 font-mono">${row.time}</td>
+        <td class="px-2 md:px-4 py-2 font-semibold">${row.activity}</td>
+        <td class="px-2 md:px-4 py-2 font-mono">${row.sleepDuration}</td>
+        <td class="px-2 md:px-4 py-2 font-mono">${row.awakeDuration}</td>
+        <td class="px-2 md:px-4 py-2 italic">${row.notes}</td>
       </tr>`;
     });
     html += `<tr class="bg-gray-50 dark:bg-gray-700 font-semibold">
-        <td class="px-4 py-2 rounded-bl-lg">Total Duration</td>
+        <td class="px-2 md:px-4 py-2 rounded-bl-lg">Total Duration</td>
         <td></td>
-        <td class="px-4 py-2 font-mono">${schedule.totalSleep}</td>
-        <td class="px-4 py-2 font-mono">${schedule.totalAwake}</td>
+        <td class="px-2 md:px-4 py-2 font-mono">${schedule.totalSleep}</td>
+        <td class="px-2 md:px-4 py-2 font-mono">${schedule.totalAwake}</td>
         <td></td>
       </tr>`;
     html += `</tbody></table>`;
@@ -83,7 +68,7 @@ export function renderSchedule(key) {
   }, 200);
 }
 
-export function initNavigation() {
+function initNavigation() {
   const shiftFromSelect = document.getElementById('shift-from');
   const shiftToSelect = document.getElementById('shift-to');
 
@@ -136,11 +121,7 @@ export function initNavigation() {
   renderSelectedSchedule();
 }
 
-// Initialize default view
-export function init() {
-  initNavigation();
-  renderSchedule('shift1-shift1');
-
+function initDarkMode() {
   const darkModeToggle = document.getElementById('dark-mode-toggle');
   const rootElement = document.documentElement;
 
@@ -157,4 +138,10 @@ export function init() {
       localStorage.setItem('darkMode', 'disabled');
     }
   });
+}
+// Initialize default view
+export function init() {
+  initDarkMode();
+  initNavigation();
+  renderSchedule('shift1-shift1');
 }
