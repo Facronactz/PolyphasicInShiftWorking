@@ -30,12 +30,16 @@ function renderSchedule(key) {
         <tr>
           <th class="font-bold px-2 md:px-4 py-2 text-left text-gray-600 dark:text-gray-300 rounded-tl-lg">Time</th>
           <th class="font-bold px-2 md:px-4 py-2 text-left text-gray-600 dark:text-gray-300">Activity</th>
-          <th class="font-bold px-2 md:px-4 py-2 text-left text-gray-600 dark:text-gray-300">Sleep Duration</th>
-          <th class="font-bold px-2 md:px-4 py-2 text-left text-gray-600 dark:text-gray-300">Awake Duration</th>
+          <th class="font-bold px-2 md:px-4 py-2 text-left text-gray-600 dark:text-gray-300 hidden md:table-cell">Sleep Duration</th>
+          <th class="font-bold px-2 md:px-4 py-2 text-left text-gray-600 dark:text-gray-300 hidden md:table-cell">Awake Duration</th>
+          <th class="font-bold px-2 md:px-4 py-2 text-left text-gray-600 dark:text-gray-300 md:hidden">Sleep</th>
+          <th class="font-bold px-2 md:px-4 py-2 text-left text-gray-600 dark:text-gray-300 md:hidden">Awake</th>
           <th class="font-bold px-2 md:px-4 py-2 text-left text-gray-600 dark:text-gray-300 rounded-tr-lg">Notes</th>
         </tr>
       </thead>
       <tbody>`;
+    let totalSleepDuration = 0;
+    let totalAwakeDuration = 0;
     schedule.data.forEach(row => {
       let rowClass = "border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200";
       if (row.activity.toLowerCase().includes("sleep") || row.activity.toLowerCase().includes("nap")) {
@@ -47,21 +51,25 @@ function renderSchedule(key) {
       } else {
         rowClass += " bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-300";
       }
-      const sleepDuration = row.sleepDuration === "-" ? "-" : row.sleepDuration <= 1 ? row.sleepDuration + " hr" : row.sleepDuration + " hrs";
-      const awakeDuration = row.awakeDuration === "-" ? "-" : row.awakeDuration <= 1 ? row.awakeDuration + " hr" : row.awakeDuration + " hrs";
+      const sleepDuration = row.sleepDuration === "0" ? "-" : row.sleepDuration <= 1 ? row.sleepDuration + " hr" : row.sleepDuration + " hrs";
+      const awakeDuration = row.awakeDuration === "0" ? "-" : row.awakeDuration <= 1 ? row.awakeDuration + " hr" : row.awakeDuration + " hrs";
+      totalSleepDuration += parseFloat(row.sleepDuration);
+      totalAwakeDuration += parseFloat(row.awakeDuration);
       html += `<tr class="${rowClass}">
         <td class="px-2 md:px-4 py-2 font-mono">${row.time}</td>
         <td class="px-2 md:px-4 py-2 font-semibold">${row.activity}</td>
-        <td class="px-2 md:px-4 py-2 font-mono">${sleepDuration}</td>
-        <td class="px-2 md:px-4 py-2 font-mono">${awakeDuration}</td>
+        <td class="px-2 md:px-4 py-2 font-mono hidden md:table-cell">${sleepDuration}</td>
+        <td class="px-2 md:px-4 py-2 font-mono hidden md:table-cell">${awakeDuration}</td>
+        <td class="px-2 md:px-4 py-2 font-mono md:hidden">${row.sleepDuration}</td>
+        <td class="px-2 md:px-4 py-2 font-mono md:hidden">${row.awakeDuration}</td>
         <td class="px-2 md:px-4 py-2 italic">${row.notes}</td>
       </tr>`;
     });
     html += `<tr class="bg-gray-50 dark:bg-gray-700 font-semibold">
         <td class="px-2 md:px-4 py-2 rounded-bl-lg">Total Duration</td>
         <td></td>
-        <td class="px-2 md:px-4 py-2 font-mono">${schedule.totalSleep} hrs</td>
-        <td class="px-2 md:px-4 py-2 font-mono">${schedule.totalAwake} hrs</td>
+        <td class="px-2 md:px-4 py-2 font-mono">${schedule.totalSleep} / ${totalSleepDuration} hrs</td>
+        <td class="px-2 md:px-4 py-2 font-mono">${schedule.totalAwake} / ${totalAwakeDuration} hrs</td>
         <td></td>
       </tr>`;
     html += `</tbody></table>`;
