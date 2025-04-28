@@ -47,19 +47,21 @@ function renderSchedule(key) {
       } else {
         rowClass += " bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-gray-300";
       }
+      const sleepDuration = row.sleepDuration === "-" ? "-" : row.sleepDuration <= 1 ? row.sleepDuration + " hr" : row.sleepDuration + " hrs";
+      const awakeDuration = row.awakeDuration === "-" ? "-" : row.awakeDuration <= 1 ? row.awakeDuration + " hr" : row.awakeDuration + " hrs";
       html += `<tr class="${rowClass}">
         <td class="px-2 md:px-4 py-2 font-mono">${row.time}</td>
         <td class="px-2 md:px-4 py-2 font-semibold">${row.activity}</td>
-        <td class="px-2 md:px-4 py-2 font-mono">${row.sleepDuration}</td>
-        <td class="px-2 md:px-4 py-2 font-mono">${row.awakeDuration}</td>
+        <td class="px-2 md:px-4 py-2 font-mono">${sleepDuration}</td>
+        <td class="px-2 md:px-4 py-2 font-mono">${awakeDuration}</td>
         <td class="px-2 md:px-4 py-2 italic">${row.notes}</td>
       </tr>`;
     });
     html += `<tr class="bg-gray-50 dark:bg-gray-700 font-semibold">
         <td class="px-2 md:px-4 py-2 rounded-bl-lg">Total Duration</td>
         <td></td>
-        <td class="px-2 md:px-4 py-2 font-mono">${schedule.totalSleep}</td>
-        <td class="px-2 md:px-4 py-2 font-mono">${schedule.totalAwake}</td>
+        <td class="px-2 md:px-4 py-2 font-mono">${schedule.totalSleep} hrs</td>
+        <td class="px-2 md:px-4 py-2 font-mono">${schedule.totalAwake} hrs</td>
         <td></td>
       </tr>`;
     html += `</tbody></table>`;
