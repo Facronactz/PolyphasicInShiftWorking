@@ -16,16 +16,13 @@ function renderSchedule(key) {
     const toShift = titleParts[1];
 
     let html = `
-      <div class="flex flex-col sm:flex-row sm:items-center sm:space-x-2 mb-4">
+      <div class="flex-row sm:items-center sm:space-x-2 mb-4 hidden md:flex">
         <span class="text-lg sm:text-xl font-semibold text-gray-800 dark:text-gray-100">${fromShift}</span>
-        <span class="text-blue-500 dark:text-blue-400 text-xl sm:text-2xl font-bold mx-0 sm:mx-2 flex">
-          <span class="sm:hidden block">↓</span>
-          <span class="invisible sm:visible">→</span>
-        </span>
+        <span class="text-blue-500 dark:text-blue-400 text-xl sm:text-2xl font-bold mx-0 sm:mx-2 flex">→</span>
         <span class="text-lg sm:text-xl font-semibold text-gray-800 dark:text-gray-100">${toShift}</span>
       </div>
     `;
-    html += `<table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700 text-xs md:text-sm rounded-lg overflow-hidden shadow-sm">
+    html += `<table id="main-table" class="min-w-full divide-y divide-gray-200 dark:divide-gray-700 text-sm rounded-lg overflow-hidden shadow-sm">
       <thead class="bg-gray-100 dark:bg-gray-700">
         <tr>
           <th class="font-bold px-2 md:px-4 py-2 text-left text-gray-600 dark:text-gray-300 rounded-tl-lg">Time</th>
@@ -137,7 +134,7 @@ function initNavigation() {
 }
 
 function initDarkMode() {
-  const darkModeToggle = document.getElementById('dark-mode-toggle');
+  const darkModeToggle = document.getElementById('dark-mode-toggle-floating');
   const rootElement = document.documentElement;
 
   // Load saved preference
@@ -154,9 +151,43 @@ function initDarkMode() {
     }
   });
 }
+
+function initSettings() {
+  const settingsButton = document.getElementById('settings-button');
+  const settingsPanel = document.getElementById('settings-panel');
+  const textSizeSelect = document.getElementById('text-size-select');
+  const rootElement = document.documentElement;
+  let tableElement = document.getElementById('main-table')
+
+  setTimeout(() => {
+    tableElement = document.getElementById('main-table')
+    console.log(tableElement)
+  }, 1000)
+
+  // Toggle settings panel visibility
+  settingsButton.addEventListener('click', () => {
+    settingsPanel.classList.toggle('hidden');
+  });
+
+  // Handle text size change
+  textSizeSelect.addEventListener('change', (event) => {
+    const textSize = event.target.value;
+    rootElement.style.fontSize = textSize === 'small' ? '14px' : textSize === 'medium' ? '16px' : '18px';
+  });
+
+  // Load saved preferences
+  if (localStorage.getItem('darkMode') === 'enabled') {
+    rootElement.classList.add('dark');
+  }
+  const savedTextSize = localStorage.getItem('textSize') || 'medium';
+  textSizeSelect.value = savedTextSize;
+  rootElement.style.fontSize = savedTextSize === 'small' ? '14px' : savedTextSize === 'medium' ? '16px' : '18px';
+}
+
 // Initialize default view
 export function init() {
   initDarkMode();
   initNavigation();
   renderSchedule(localStorage.getItem('selectedSchedule') || 'shift1-shift1');
+  initSettings();
 }

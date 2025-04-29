@@ -43,21 +43,30 @@
     .scroll-smooth {
       scroll-behavior: smooth;
     }
+    #settings-button {
+      position: fixed;
+      bottom: 1rem;
+      right: 1rem;
+      z-index: 50;
+    }
+    #settings-panel {
+      position: absolute;
+      bottom: 4rem;
+      right: 0;
+      z-index: 50;
+    }
   </style>
 </head>
 
 <body class="bg-gray-50 min-h-screen py-6 px-2 md:p-6 scroll-smooth flex flex-col items-center dark:bg-gray-900">
-<header class="max-w-6xl w-full mb-8 flex justify-between items-center">
+<header class="max-w-6xl w-full md:mb-8 flex justify-between items-center">
   <div>
     <h1 class="text-4xl font-semibold text-gray-800 dark:text-gray-100 mb-2">Shift Work Polyphasic Sleep Schedule</h1>
     <p class="text-gray-600 dark:text-gray-300 mb-6">Select the shifts below to view the detailed polyphasic sleep schedule.</p>
   </div>
-  <button id="dark-mode-toggle" aria-label="Toggle Dark Mode" class="bg-gray-200 dark:bg-gray-700 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
-    <i class="fas fa-moon text-gray-800 dark:text-gray-200"></i>
-  </button>
 </header>
 
-<nav class="max-w-6xl w-full mb-10 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md flex flex-col md:flex-row md:items-center md:space-x-4">
+<nav class="max-w-6xl w-full mb-6 md:mb-10 bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md flex flex-col md:flex-row md:items-center md:space-x-4">
   <div class="flex-1 mb-4 md:mb-0">
     <label for="shift-from" class="block mb-2 text-gray-900 dark:text-gray-100 font-semibold">From Shift</label>
     <select id="shift-from" class="w-full p-2 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
@@ -79,6 +88,31 @@
 <footer class="max-w-6xl w-full mt-12 text-center text-gray-500 text-sm">
   &copy; 2025 Facronactz. All rights reserved.
 </footer>
+
+<!-- Add this before the closing </body> tag -->
+<div class="fixed bottom-4 right-4 z-50">
+  <button id="settings-button" class="bg-gray-200 dark:bg-gray-700 text-white p-3 rounded-xl shadow-lg hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200">
+    <i class="fas fa-cog text-xl text-gray-800 dark:text-gray-200"></i>
+  </button>
+  <div id="settings-panel" class="hidden bg-white dark:bg-gray-800 p-4 rounded-lg shadow-lg w-64 mt-2">
+    <div class="mb-4">
+      <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Dark Mode</label>
+      <button id="dark-mode-toggle-floating" class="w-full bg-gray-200 dark:bg-gray-700 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <span class="text-gray-800 dark:text-gray-200">Toggle Dark Mode</span>
+      </button>
+    </div>
+    <div class="mb-4">
+      <label for="text-size-select" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Text Size</label>
+      <select id="text-size-select" class="w-full p-2 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <option value="small">Small</option>
+        <option value="medium">Medium</option>
+        <option value="large">Large</option>
+      </select>
+    </div>
+    <!-- Add more settings here -->
+  </div>
+</div>
+
 
 <script type="module">
   import { init } from './js/functions.js';
