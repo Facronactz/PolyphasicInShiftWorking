@@ -113,10 +113,13 @@ function initNavigation() {
 
   function renderSelectedSchedule() {
     const from = shiftFromSelect.value;
+    localStorage.setItem('from', from);
     const to = shiftToSelect.value;
+    localStorage.setItem('to', to);
     const key = `${from}-${to}`;
     if (schedules[key]) {
       renderSchedule(key);
+      localStorage.setItem('selectedSchedule', key);
     } else {
       scheduleContainer.innerHTML = '<p class="text-red-600">Schedule not found for selected shifts.</p>';
     }
@@ -126,8 +129,10 @@ function initNavigation() {
   shiftToSelect.addEventListener('change', renderSelectedSchedule);
 
   // Set default selections and render
-  shiftFromSelect.value = 'shift1';
-  shiftToSelect.value = 'shift1';
+  // shiftFromSelect.value = 'shift1';
+  // shiftToSelect.value = 'shift1';
+  shiftFromSelect.value = localStorage.getItem('from') || 'shift1';
+  shiftToSelect.value = localStorage.getItem('to') || 'shift1';
   renderSelectedSchedule();
 }
 
@@ -153,5 +158,5 @@ function initDarkMode() {
 export function init() {
   initDarkMode();
   initNavigation();
-  renderSchedule('shift1-shift1');
+  renderSchedule(localStorage.getItem('selectedSchedule') || 'shift1-shift1');
 }
