@@ -221,37 +221,40 @@ export const schedules = {
     title: "Day Off → Morning Shift (06:00–14:00)",
     data: [
       { time: "Flexible", activity: "Night Sleep", sleepDuration: "7-8", awakeDuration: "0", notes: "Full rest on day off" },
-      { time: "05:00–06:00", activity: "Preparation", sleepDuration: "0", awakeDuration: "1", notes: "Pre-work preparation" },
-      { time: "06:00–10:00", activity: "Work", sleepDuration: "0", awakeDuration: "4", notes: "" },
-      { time: "10:00–10:30", activity: "Nap at Work", sleepDuration: "0.5", awakeDuration: "0", notes: "Utilize work break" },
-      { time: "10:30–14:00", activity: "Continue Working", sleepDuration: "0", awakeDuration: "3.5", notes: "" },
+      { time: "04:30–05:00", activity: "Power Nap 😴", sleepDuration: "0.5", awakeDuration: "0" , notes: "Energy prep" },
+      { time: "05:00–06:00", activity: "Preparation 📚", sleepDuration: "0", awakeDuration: "1", notes: "Pre-work preparation" },
+      { time: "06:00–10:00", activity: "Work (Next Shift) 🧑‍💻", sleepDuration: "0", awakeDuration: "4", notes: "" },
+      { time: "10:00–10:30", activity: "Nap at Work (Next Shift) 😪", sleepDuration: "0.5", awakeDuration: "0", notes: "Utilize work break" },
+      { time: "10:30–14:00", activity: "Continue Working (Next Shift) 🧑‍💻", sleepDuration: "0", awakeDuration: "3.5", notes: "" },
     ],
-    totalSleep: "7-8",
-    totalAwake: "8.5-9.5"
+    totalSleep: "8-9",
+    totalAwake: "Flexible"
   },
   "dayoff-shift2": {
     title: "Day Off → Afternoon Shift (14:00–22:00)",
     data: [
       { time: "Flexible", activity: "Night Sleep", sleepDuration: "7-8", awakeDuration: "0", notes: "Full rest on day off" },
+      { time: "12:30–13:00", activity: "Power Nap", sleepDuration: "0.5", awakeDuration: "0", notes: "Energy prep" },
       { time: "13:00–14:00", activity: "Preparation", sleepDuration: "0", awakeDuration: "1", notes: "Pre-work preparation" },
-      { time: "14:00–18:00", activity: "Work", sleepDuration: "0", awakeDuration: "4", notes: "" },
-      { time: "18:00–18:30", activity: "Nap at Work", sleepDuration: "0.5", awakeDuration: "0", notes: "Utilize work break" },
-      { time: "18:30–22:00", activity: "Continue Working", sleepDuration: "0", awakeDuration: "3.5", notes: "" },
+      { time: "14:00–18:00", activity: "Work (Next Shift)", sleepDuration: "0", awakeDuration: "4", notes: "" },
+      { time: "18:00–18:30", activity: "Nap at Work (Next Shift)", sleepDuration: "0.5", awakeDuration: "0", notes: "Utilize work break" },
+      { time: "18:30–22:00", activity: "Continue Working (Next Shift)", sleepDuration: "0", awakeDuration: "3.5", notes: "" },
     ],
-    totalSleep: "7-8",
-    totalAwake: "8.5-9.5"
+    totalSleep: "8-9",
+    totalAwake: "Flexible"
   },
   "dayoff-shift3": {
     title: "Day Off → Night Shift (22:00–06:00)",
     data: [
       { time: "Flexible", activity: "Night Sleep", sleepDuration: "7-8", awakeDuration: "0", notes: "Full rest on day off" },
+      { time: "20:30–21:00", activity: "Power Nap", sleepDuration: "0.5", awakeDuration: "0", notes: "Energy prep" },
       { time: "21:00–22:00", activity: "Preparation", sleepDuration: "0", awakeDuration: "1", notes: "Pre-work preparation" },
       { time: "22:00–02:00", activity: "Work", sleepDuration: "0", awakeDuration: "4", notes: "" },
       { time: "02:00–02:30", activity: "Nap at Work", sleepDuration: "0.5", awakeDuration: "0", notes: "Utilize work break" },
       { time: "02:30–06:00", activity: "Continue Working", sleepDuration: "0", awakeDuration: "3.5", notes: "" },
     ],
-    totalSleep: "7-8",
-    totalAwake: "8.5-9.5"
+    totalSleep: "8-9",
+    totalAwake: "Flexible"
   },
   "dayoff-dayoff": {
     title: "Day Off → Day Off",
