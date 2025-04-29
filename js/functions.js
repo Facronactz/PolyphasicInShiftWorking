@@ -23,7 +23,7 @@ function renderSchedule(key) {
       </div>
     `;
     html += `<table id="main-table" class="min-w-full divide-y divide-gray-200 dark:divide-gray-700 text-sm rounded-lg overflow-hidden shadow-sm">
-      <thead class="bg-gray-100 dark:bg-gray-700">
+      <thead class="bg-gray-100 dark:bg-gray-800">
         <tr>
           <th class="font-bold px-2 md:px-4 py-2 text-left text-gray-600 dark:text-gray-300 rounded-tl-lg">Time</th>
           <th class="font-bold px-2 md:px-4 py-2 text-left text-gray-600 dark:text-gray-300">Activity</th>
@@ -62,7 +62,7 @@ function renderSchedule(key) {
         <td class="px-2 md:px-4 py-2 italic">${row.notes}</td>
       </tr>`;
     });
-    html += `<tr class="bg-gray-50 dark:bg-gray-700 font-semibold">
+    html += `<tr class="bg-gray-50 dark:bg-gray-800 font-semibold">
         <td class="px-2 md:px-4 py-2 rounded-bl-lg">Total Duration</td>
         <td></td>
         <td class="px-2 md:px-4 py-2 font-mono">${schedule.totalSleep} / ${totalSleepDuration} hrs</td>
@@ -173,12 +173,10 @@ function initSettings() {
   textSizeSelect.addEventListener('change', (event) => {
     const textSize = event.target.value;
     rootElement.style.fontSize = textSize === 'small' ? '14px' : textSize === 'medium' ? '16px' : '18px';
+    localStorage.setItem('textSize', textSize);
   });
 
   // Load saved preferences
-  if (localStorage.getItem('darkMode') === 'enabled') {
-    rootElement.classList.add('dark');
-  }
   const savedTextSize = localStorage.getItem('textSize') || 'medium';
   textSizeSelect.value = savedTextSize;
   rootElement.style.fontSize = savedTextSize === 'small' ? '14px' : savedTextSize === 'medium' ? '16px' : '18px';
