@@ -211,11 +211,11 @@ export const schedules = {
       { time: "02:30–06:00", activity: "Continue Working", sleepDuration: "0", awakeDuration: "3.5", notes: "" },
       { time: "06:00–06:30", activity: "Go Home", sleepDuration: "0", awakeDuration: "0.5", notes: "" },
       { time: "06:30–10:00", activity: "Core Sleep 💤", sleepDuration: "3.5", awakeDuration: "0", notes: "Main sleep after shift" },
-      { time: "10:00–23:00", activity: "Free Time", sleepDuration: "0", awakeDuration: "5", notes: "" },
-      { time: "23:00–06:00", activity: "Night Sleep", sleepDuration: "8", awakeDuration: "0", notes: "Full rest on day off" },
+      { time: "10:00–23:00", activity: "Free Time", sleepDuration: "0", awakeDuration: "13", notes: "" },
+      { time: "23:00–07:00", activity: "Night Sleep", sleepDuration: "8", awakeDuration: "0", notes: "Full rest on day off" },
     ],
-    totalSleep: "8",
-    totalAwake: "7"
+    totalSleep: "12",
+    totalAwake: "22"
   },
   "dayoff-shift1": {
     title: "Day Off → Morning Shift (06:00–14:00)",
